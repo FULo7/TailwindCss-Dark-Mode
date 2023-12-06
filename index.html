@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        input:checked ~ .dot {
+          transform: translateX(100%);
+          background-color: #171a19;
+        }
+    </style>
+</head>
+<body class="dark:bg-slate-600">
+    <div class="flex  justify-center items-center h-screen">
+        <div class="hover:scale-105 dark:bg-slate-800 transition duration-500 shadow-md p-5 flex flex-col md:flex-row rounded-2xl md:space-x-3 space-y-3">
+            <!-- image -->
+            <img class="h-56 md:h-64 rounded-2xl object-cover" src="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNhdHxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60" alt="" srcset="">
+            <!-- content -->
+            <div class="">
+                <h1 class="dark:text-slate-500 font-bold text-2xl ">My cute cat</h1>
+                <p class="dark:text-slate-500 mb-3">Nov 7, 2023</p>
+                <p class="max-w-xs text-slate-500 mb-3">Lorem ipsum Sint, perspiciatis adipisci error fugiat et minus cumque pariatur nesciunt doloremque, iusto assumenda iste reiciendis eaque nemo laudantium omnis. Quod?</p>
+                <button class="bg-pink-500 text-white py-2 px-5 rounded-xl hover:bg-pink-600 transition duraion-500">See More</button>
+                <div class="flex items-center justify-center w-full mb-12">
+  
+                    <label for="toggleB" class="flex items-center cursor-pointer">
+                      <!-- toggle -->
+                      <div class="relative">
+                        <!-- input -->
+                        <input type="checkbox" id="toggleB" class="sr-only">
+                        <!-- line -->
+                        <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                        <!-- dot -->
+                        <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                      </div>
+                      <!-- label -->
+                      <div class="dark:text-slate-500 ml-3 text-gray-700 font-medium">
+                        Dark Mode
+                      </div>
+                    </label>
+  
+                  </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const app = document.querySelector("#toggleB");
+
+        const DarkTheme = () =>{
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('data-theme', 'dark')
+        }
+
+        const LightTheme = () =>{
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('data-theme', 'light')
+        }
+
+
+        app.addEventListener('click',() => {
+            const theme = localStorage.getItem('data-theme');
+            
+            if(theme === 'dark') {
+                LightTheme()
+            } else {
+                DarkTheme()
+            }
+            
+        })
+
+        const theme = localStorage.getItem('data-theme');
+        if(theme === 'dark') {
+            DarkTheme()
+            app.setAttribute('checked','checked')
+        } else {
+            LightTheme()
+        }
+    </script>
+
+    
+</body>
+</html>
